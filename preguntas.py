@@ -246,7 +246,7 @@ def pregunta_07():
         for a in arreglo:
             if(a[1]==n):
                 contiene.append(a[0])
-        res.append((n,contiene))
+        res.append((int(n),contiene))
     return res
 
 
@@ -286,7 +286,7 @@ def pregunta_08():
             if(a[1]==n and a[0] not in contiene):
                 contiene.append(a[0])
 
-        res.append((n,sorted(contiene)))
+        res.append((int(n),sorted(contiene)))
     return res
     
 
