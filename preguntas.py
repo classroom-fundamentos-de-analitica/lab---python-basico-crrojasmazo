@@ -312,7 +312,7 @@ def pregunta_09():
 
     """
     arreglo = leer()
-    res=[]
+    res={}
     data=['aaa','bbb','ccc','ddd','eee','fff','ggg','hhh','iii','jjj']
     valores=[]
     for Lasval in arreglo:
@@ -327,7 +327,7 @@ def pregunta_09():
             if(d==l[:3]):
                 num = l.split(":")
                 tupla.append(int(num[1]))
-        res.append((d,len(tupla)))
+        res.update({d:len(tupla)})
 
     
     return res
