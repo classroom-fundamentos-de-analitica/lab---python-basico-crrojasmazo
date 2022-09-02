@@ -374,7 +374,7 @@ def pregunta_11():
 
     """
     arreglo = leer()
-    res=[]
+    res={}
     letras= ['a','b','c','d','e','f','g']
     newArr=[]
     for a in arreglo:
@@ -385,7 +385,7 @@ def pregunta_11():
         for n in newArr:
             if(l in n[1]):
                 contar += int(n[0])
-        res.append((l,contar))
+        res.update({l:contar})
     return res
 
 
