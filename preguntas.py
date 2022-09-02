@@ -405,7 +405,7 @@ def pregunta_12():
 
     """
     arreglo = leer()
-    res=[]
+    res={}
     letras= ['A','B','C','D','E']
     for l in letras:
         arreglodeultimacolumna =[]
@@ -416,6 +416,6 @@ def pregunta_12():
                 for val in lista: 
                     s= val.split(":")
                     contar+=int(s[1])
-        res.append((l,contar))
+        res.update({l:contar})
     return res
 
