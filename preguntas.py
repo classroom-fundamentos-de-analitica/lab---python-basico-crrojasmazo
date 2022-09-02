@@ -352,7 +352,13 @@ def pregunta_10():
 
 
     """
-    return
+    arreglo = leer()
+    res=[]
+    for a in arreglo:
+        val = len(a[3].split(","))
+        val2 = len(a[4].split(","))
+        res.append((a[0],val,val2))
+    return res
 
 
 def pregunta_11():
