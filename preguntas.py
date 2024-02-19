@@ -11,20 +11,39 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
+import csv
+from sys import api_version
+from typing import Container
+from unicodedata import numeric
+
+def leer():
+    arreglo=[]
+    with open('data.csv') as File:
+        reader = csv.reader(File, delimiter='\t')
+                        
+        for row in reader:
+            arreglo.append(row)
+    return arreglo
 
 
 def pregunta_01():
     """
     Retorne la suma de la segunda columna.
-
+    
     Rta/
     214
 
     """
-    return
+    arreglo = leer()
+    contar=0
+    for i in arreglo:
+        contar+= int(i[1])
+   
+    return contar
 
 
 def pregunta_02():
+
     """
     Retorne la cantidad de registros por cada letra de la primera columna como la lista
     de tuplas (letra, cantidad), ordendas alfabéticamente.
@@ -37,9 +56,19 @@ def pregunta_02():
         ("D", 6),
         ("E", 14),
     ]
-
+    
     """
-    return
+    arreglo = leer()
+    res=[]
+    data=['A','B','C','D','E']
+    for i in data:
+        valor =0 
+        for j in arreglo:
+            if(i==j[0]):
+                valor+=1
+        res.append((i,valor))
+  
+    return res
 
 
 def pregunta_03():
@@ -57,7 +86,18 @@ def pregunta_03():
     ]
 
     """
-    return
+    arreglo = leer()
+    res=[]
+    data=['A','B','C','D','E']
+    for i in data:
+        valor =0 
+        for j in arreglo:
+            if(i==j[0]):
+                valor+=int(j[1])
+        res.append((i,valor))
+ 
+    return res
+    
 
 
 def pregunta_04():
@@ -82,7 +122,20 @@ def pregunta_04():
     ]
 
     """
-    return
+    arreglo = leer()
+    res=[]
+    data=['01','02','03','04','05','06','07','08','09','10','11','12']
+    for i in data:
+        valor=0
+        for j in range(len(arreglo)):
+            variable = arreglo[j][2].split("-")
+            fecha = variable[1]
+            if(i==fecha):
+                valor +=1
+        res.append((i,valor))
+    
+    return res
+    
 
 
 def pregunta_05():
@@ -100,7 +153,17 @@ def pregunta_05():
     ]
 
     """
-    return
+    arreglo = leer()
+    res=[]
+    data=['A','B','C','D','E']
+    for i in data:
+        tupla=[]
+        for j in arreglo:
+            if(i==j[0]):
+                tupla.append(int(j[1]))
+        res.append((i,max(tupla),min(tupla)))
+   
+    return res
 
 
 def pregunta_06():
@@ -125,7 +188,28 @@ def pregunta_06():
     ]
 
     """
-    return
+    arreglo = leer()
+    res=[]
+    data=['aaa','bbb','ccc','ddd','eee','fff','ggg','hhh','iii','jjj']
+    valores=[]
+    for Lasval in arreglo:
+        ultimo = Lasval[4].split(",")
+        for k in ultimo:
+            valores.append(k)
+    
+
+    for d in data:
+        tupla=[] 
+        for l in valores:
+            if(d==l[:3]):
+                num = l.split(":")
+                tupla.append(int(num[1]))
+        res.append((d,min(tupla),max(tupla)))
+
+    
+    return res
+    
+   
 
 
 def pregunta_07():
@@ -149,7 +233,21 @@ def pregunta_07():
     ]
 
     """
-    return
+    arreglo = leer()
+    res=[]
+    letras=['A','B','C','D','E']
+    numeros=['0','1','2','3','4','5','6','7','8','9']
+    
+
+    
+    
+    for n in numeros:
+        contiene =[]
+        for a in arreglo:
+            if(a[1]==n):
+                contiene.append(a[0])
+        res.append((int(n),contiene))
+    return res
 
 
 def pregunta_08():
@@ -174,7 +272,23 @@ def pregunta_08():
     ]
 
     """
-    return
+    arreglo = leer()
+    res=[]
+    letras=['A','B','C','D','E']
+    numeros=['0','1','2','3','4','5','6','7','8','9']
+    
+
+    
+    
+    for n in numeros:
+        contiene =[]
+        for a in arreglo:
+            if(a[1]==n and a[0] not in contiene):
+                contiene.append(a[0])
+
+        res.append((int(n),sorted(contiene)))
+    return res
+    
 
 
 def pregunta_09():
@@ -197,7 +311,27 @@ def pregunta_09():
     }
 
     """
-    return
+    arreglo = leer()
+    res={}
+    data=['aaa','bbb','ccc','ddd','eee','fff','ggg','hhh','iii','jjj']
+    valores=[]
+    for Lasval in arreglo:
+        ultimo = Lasval[4].split(",")
+        for k in ultimo:
+            valores.append(k)
+    
+
+    for d in data:
+        tupla=[] 
+        for l in valores:
+            if(d==l[:3]):
+                num = l.split(":")
+                tupla.append(int(num[1]))
+        res.update({d:len(tupla)})
+
+    
+    return res
+    
 
 
 def pregunta_10():
@@ -218,7 +352,13 @@ def pregunta_10():
 
 
     """
-    return
+    arreglo = leer()
+    res=[]
+    for a in arreglo:
+        val = len(a[3].split(","))
+        val2 = len(a[4].split(","))
+        res.append((a[0],val,val2))
+    return res
 
 
 def pregunta_11():
@@ -239,7 +379,20 @@ def pregunta_11():
 
 
     """
-    return
+    arreglo = leer()
+    res={}
+    letras= ['a','b','c','d','e','f','g']
+    newArr=[]
+    for a in arreglo:
+        newArr.append((a[1],a[3].split(",")))
+    
+    for l in letras:
+        contar = 0
+        for n in newArr:
+            if(l in n[1]):
+                contar += int(n[0])
+        res.update({l:contar})
+    return res
 
 
 def pregunta_12():
@@ -257,4 +410,18 @@ def pregunta_12():
     }
 
     """
-    return
+    arreglo = leer()
+    res={}
+    letras= ['A','B','C','D','E']
+    for l in letras:
+        arreglodeultimacolumna =[]
+        contar = 0;
+        for a in arreglo:
+            if(a[0]==l):
+                lista = a[4].split(",")
+                for val in lista: 
+                    s= val.split(":")
+                    contar+=int(s[1])
+        res.update({l:contar})
+    return res
+
